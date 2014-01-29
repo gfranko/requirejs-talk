@@ -35,7 +35,7 @@ html
           li
             h4 Promotes Smaller Files
           li
-            h4 Dependency Management
+            h4 Declarative Dependency Management
           li
             h3
               a(href='http://requirejs.org/docs/optimization.html', target='_blank') Workflow
@@ -69,26 +69,37 @@ html
         h4 It's Okay If You Aren't
 
       section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+        h2 RequireJS Basics
+        h3 Let's Learn By Seeing
 
       section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        h2 Before
+        h3 JavaScript files are included as HTML script tags
         hr
         pre
-          code.language-javascript.
-            bespoke.from('article', {
-              keys: true,
-              touch: true,
-              hash: true,
-              state: true,
-              bullets: 'li, .bullet'
-            });
+          code.language-markup
+            &lt;body&gt;
+            &lt;script src='jquery.js'&gt;&lt;/script&gt;
+            &lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
+            &lt;script src='jquery.selectboxit.js'&gt;&lt;/script&gt;
+            &lt;script src='lodash.js'&gt;&lt;/script&gt;
+            &lt;script src='backbone.js'&gt;&lt;/script&gt;
+            &lt;script src='init.js'&gt;&lt;/script&gt;
+            &lt;script src='app.js'&gt;&lt;/script&gt;
+            &lt;/body&gt;
+
+      section
+        h2 After
+        h3 Only Require.js is included as an HTML script tag
+        hr
+        pre
+          code.language-markup
+            &lt;head&gt;
+            &lt;script src='require.js' data-main='init.js'&gt;&lt;/script&gt;
+            &lt;/head&gt;
+
+        hr
+        h3 <code>data-main</code> - Tells Require.js what file to load first
 
       section(data-bespoke-hash='named-route')
         h2 Named Route
