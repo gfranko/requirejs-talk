@@ -96,7 +96,7 @@
         <h3>Only Require.js is included as an HTML script tag</h3>
         <hr>
         <pre><code class="language-markup">&lt;body&gt;
-&lt;script src='require.js' data-main='init.js'&gt;&lt;/script&gt;
+&lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
 &lt;/body&gt;</code></pre>
         <hr>
         <h3><code>data-main</code> - Tells Require.js what file to load first</h3>
@@ -160,7 +160,112 @@
             <h3>Module Format Used By RequireJS</h3>
           </li>
           <li>
-            <h3>Exposes Two Global Methods</h3>
+            <h3>Exposes Two Global Methods:</h3>
+            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define()</a></h3>
+            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require()</a></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define()</a></h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Communicates a File's Dependencies and Return Value</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// example.js
+// Does not depend on any files and returns a string
+define(function() {
+  return 'No dependencies, returns a string';
+});
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+          <d>Is Still Confusing...</d>
+        </h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">var example = function() {
+  return 'No dependencies, returns a string';
+}();
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define()</a></h1>
+        <ul>
+          <li>
+            <h3>Let's Look At A Slightly More Complicated Example</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// getUser.js
+// Depends on a file (users.js), and returns a getUser function
+define(['./users']function(users) {
+  return function getUser(username) {
+    return users[username];
+  };
+});
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+          <d>Is Still Confusing...</d>
+        </h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">var getUser = function(users) {
+  return function getUser(username) {
+    return users[username];
+  };
+}(usersCollection);
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Is That It?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Nope, There Are Many More Ways To Define an AMD Module</h3>
+          </li>
+          <li>
+            <h3>Check Out More <a href="http://requirejs.org/docs/api.html#define" target="_blank">Module Definitions</a></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require()</a></h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Loads One Or More AMD Modules</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// Loads the example.js module from our first define() example
+require(['./example.js'], function(exampleText) {
+  // Prints: 'example.js return value: No dependencies, returns a string'
+  console.log('example.js return value: ', exampleText);
+})</code></pre>
+          </li>
+          <li>
+            <h3>That's All There Is To The <code>require()</code> Method</h3>
           </li>
         </ul>
       </section>

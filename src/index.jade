@@ -106,7 +106,7 @@ html
         pre
           code.language-markup
             &lt;body&gt;
-            &lt;script src='require.js' data-main='init.js'&gt;&lt;/script&gt;
+            &lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
             &lt;/body&gt;
 
         hr
@@ -161,11 +161,107 @@ html
           li
             h3 Module Format Used By RequireJS
           li
-            h3 Exposes Two Global Methods
+            h3 Exposes Two Global Methods:
+            h3
+              a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define()
+            h3
+              a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require()
 
       section
-        
+        h1
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define()
+        ul
+          li
+          li
+            h3 Communicates a File's Dependencies and Return Value
+          li
+            pre
+              code.language-javascript.
+                // example.js
+                // Does not depend on any files and returns a string
+                define(function() {
+                  return 'No dependencies, returns a string';
+                });
 
+      section
+        h1 If 
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
+          d Is Still Confusing...
+        ul
+          li
+          li
+            h3 Let's See How It Would Look In Plain JavaScript
+          li
+            pre
+              code.language-javascript.
+                var example = function() {
+                  return 'No dependencies, returns a string';
+                }();
+
+      section
+        h1
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define()
+        ul
+          li
+            h3 Let's Look At A Slightly More Complicated Example
+          li
+            pre
+              code.language-javascript.
+                // getUser.js
+                // Depends on a file (users.js), and returns a getUser function
+                define(['./users']function(users) {
+                  return function getUser(username) {
+                    return users[username];
+                  };
+                });
+
+      section
+        h1 If 
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
+          d Is Still Confusing...
+        ul
+          li
+          li
+            h3 Let's See How It Would Look In Plain JavaScript
+          li
+            pre
+              code.language-javascript.
+                var getUser = function(users) {
+                  return function getUser(username) {
+                    return users[username];
+                  };
+                }(usersCollection);
+
+      section
+        h1 Is That It?
+        hr
+        ul
+          li
+          li
+            h3 Nope, There Are Many More Ways To Define an AMD Module
+          li
+            h3 Check Out More 
+              a(href='http://requirejs.org/docs/api.html#define', target='_blank') Module Definitions
+
+      section
+        h1
+          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require()
+        ul
+          li
+          li
+            h3 Loads One Or More AMD Modules
+          li
+            pre
+              code.language-javascript.
+                // Loads the example.js module from our first define() example
+                require(['./example.js'], function(exampleText) {
+                  // Prints: 'example.js return value: No dependencies, returns a string'
+                  console.log('example.js return value: ', exampleText);
+                })
+          li
+            h3 That's All There Is To The <code>require()</code> Method
+
+      section
 
     // build:js scripts/scripts.js
     script(src='bower_components/bespoke.js/dist/bespoke.min.js')
