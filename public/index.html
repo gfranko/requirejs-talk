@@ -18,54 +18,41 @@
       </section>
       <section>
         <h2>Why Do People Use RequireJS?</h2>
-        <ul>
-          <li></li>
-          <li>
-            <h3><a href="http://requirejs.org/docs/why.html" target="_blank">Performance</a></h3>
-          </li>
-          <li>
-            <h4>Asynchronous and Dynamic Loading</h4>
-          </li>
-          <li>
-            <h3><a href="http://requirejs.org/docs/whyamd.html" target="_blank">Maintainability</a></h3>
-          </li>
-          <li>
-            <h4>Promotes Smaller Files</h4>
-          </li>
-          <li>
-            <h4>Declarative Dependency Management</h4>
-          </li>
-          <li>
-            <h3><a href="http://requirejs.org/docs/optimization.html" target="_blank">Workflow</a></h3>
-          </li>
-          <li>
-            <h4>No Build Step Required</h4>
-          </li>
-        </ul>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/why.html" target="_blank">Performance</a></h2>
+        <h4>Asynchronous and Dynamic Loading</h4>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/whyamd.html" target="_blank">Maintainability</a></h2>
+        <h4>Decoupled Code into Modules</h4>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/optimization.html" target="_blank">Workflow</a></h2>
+        <h4>No Build Step Required</h4>
       </section>
       <section>
         <h2>What Projects/Companies Use RequireJS?</h2>
-        <ul>
-          <li></li>
-          <li>
-            <h3><a href="https://github.com/jquery/jquery/blob/master/build/tasks/build.js#L11" target="_blank">jQuery</a></h3>
-          </li>
-          <li>
-            <h3><a href="http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/" target="_blank">SoundCloud</a></h3>
-          </li>
-          <li>
-            <h3><a href="http://www.nearform.com/nodecrunch/release-the-kracken-how-paypal-is-being-revolutionized-by-node-js-and-lean-ux#.UuiYw2Qo7-Y" target="_blank">PayPal</a></h3>
-          </li>
-          <li>
-            <h3><a href="http://www.bbc.co.uk/frameworks/requirejs" target="_blank">BBC News</a></h3>
-          </li>
-          <li>
-            <h3><a href="https://www.addthis.com/get/smart-layers" target="_blank">AddThis</a></h3>
-          </li>
-          <li>
-            <h3>AND SO MANY MORE</h3>
-          </li>
-        </ul>
+      </section>
+      <section>
+        <h2><a href="https://github.com/jquery/jquery/blob/master/build/tasks/build.js#L11" target="_blank">jQuery</a></h2>
+        <h4>Used in Development, Removed In Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/" target="_blank">SoundCloud</a></h2>
+        <h4>RequireJS in Development, AlmondJS In Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://www.nearform.com/nodecrunch/release-the-kracken-how-paypal-is-being-revolutionized-by-node-js-and-lean-ux#.UuiYw2Qo7-Y" target="_blank">PayPal</a></h2>
+        <h4>Used In Both Development and Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://www.bbc.co.uk/frameworks/requirejs" target="_blank">BBC News</a></h2>
+        <h4>Used In Both Development and Production</h4>
+      </section>
+      <section>
+        <h2><a href="https://www.addthis.com/get/smart-layers" target="_blank">AddThis</a></h2>
+        <h4>RequireJS in Development, AMDCleanJS In Production </h4>
       </section>
       <section>
         <h2>Are You Using RequireJS?</h2>
@@ -76,7 +63,7 @@
         <h3>Let's Learn By Seeing</h3>
       </section>
       <section>
-        <h2>Before</h2>
+        <h2>Most Projects Start Like This:</h2>
         <h3>JavaScript files are included as HTML script tags</h3>
         <hr>
         <pre><code class="language-markup">&lt;body&gt;
@@ -90,14 +77,55 @@
 &lt;/body&gt;</code></pre>
       </section>
       <section>
-        <h2>After</h2>
+        <h1>This Is Fine...</h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>If you don't have many dependencies</h3>
+          </li>
+          <li>
+            <h3>If you do not care about page load performance</h3>
+          </li>
+          <li>
+            <h3>If you like all of your JavaScript logic in one file</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>This Is Better:</h1>
         <h3>Only Require.js is included as an HTML script tag</h3>
         <hr>
-        <pre><code class="language-markup">&lt;head&gt;
+        <pre><code class="language-markup">&lt;body&gt;
 &lt;script src='require.js' data-main='init.js'&gt;&lt;/script&gt;
-&lt;/head&gt;</code></pre>
+&lt;/body&gt;</code></pre>
         <hr>
         <h3><code>data-main</code> - Tells Require.js what file to load first</h3>
+      </section>
+      <section>
+        <h1>Huh?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>How Are My Files Getting Loaded?</h3>
+          </li>
+          <li>
+            <h3>Do I have to Use the <code>data-main</code> Attribute?</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Oh!</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Require.js is now loading all of your JavaScript files</h3>
+          </li>
+          <li>
+            <h3>The <code>data-main</code> attribute is a optional</h3>
+          </li>
+        </ul>
       </section>
       <section data-bespoke-hash="named-route">
         <h2>Named Route</h2>

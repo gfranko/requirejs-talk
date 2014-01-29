@@ -22,47 +22,47 @@ html
 
       section
         h2 Why Do People Use RequireJS?
-        ul
-          li
-          li
-            h3
-              a(href='http://requirejs.org/docs/why.html', target='_blank') Performance
-          li
-            h4 Asynchronous and Dynamic Loading
-          li
-            h3
-              a(href='http://requirejs.org/docs/whyamd.html', target='_blank') Maintainability
-          li
-            h4 Promotes Smaller Files
-          li
-            h4 Declarative Dependency Management
-          li
-            h3
-              a(href='http://requirejs.org/docs/optimization.html', target='_blank') Workflow
-          li
-            h4 No Build Step Required
+
+      section
+        h2
+          a(href='http://requirejs.org/docs/why.html', target='_blank') Performance
+        h4 Asynchronous and Dynamic Loading
+      section
+        h2
+          a(href='http://requirejs.org/docs/whyamd.html', target='_blank') Maintainability
+        h4 Decoupled Code into Modules
+      section
+        h2
+          a(href='http://requirejs.org/docs/optimization.html', target='_blank') Workflow
+        h4 No Build Step Required
 
       section
         h2 What Projects/Companies Use RequireJS?
-        ul
-          li
-          li
-            h3
-              a(href='https://github.com/jquery/jquery/blob/master/build/tasks/build.js#L11', target='_blank') jQuery
-          li
-            h3
-              a(href='http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/' target='_blank') SoundCloud
-          li
-            h3
-              a(href='http://www.nearform.com/nodecrunch/release-the-kracken-how-paypal-is-being-revolutionized-by-node-js-and-lean-ux#.UuiYw2Qo7-Y' target='_blank') PayPal
-          li
-            h3
-              a(href='http://www.bbc.co.uk/frameworks/requirejs' target='_blank') BBC News
-          li
-            h3
-              a(href='https://www.addthis.com/get/smart-layers' target='_blank') AddThis
-          li
-            h3 AND SO MANY MORE
+
+      section
+        h2
+          a(href='https://github.com/jquery/jquery/blob/master/build/tasks/build.js#L11', target='_blank') jQuery
+        h4 Used in Development, Removed In Production
+
+      section
+        h2
+          a(href='http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/' target='_blank') SoundCloud
+        h4 RequireJS in Development, AlmondJS In Production
+
+      section
+        h2
+          a(href='http://www.nearform.com/nodecrunch/release-the-kracken-how-paypal-is-being-revolutionized-by-node-js-and-lean-ux#.UuiYw2Qo7-Y' target='_blank') PayPal
+        h4 Used In Both Development and Production
+
+      section
+        h2
+          a(href='http://www.bbc.co.uk/frameworks/requirejs' target='_blank') BBC News
+        h4 Used In Both Development and Production
+
+      section
+        h2
+          a(href='https://www.addthis.com/get/smart-layers' target='_blank') AddThis
+        h4 RequireJS in Development, AMDCleanJS In Production 
 
       section
         h2 Are You Using RequireJS?
@@ -73,7 +73,7 @@ html
         h3 Let's Learn By Seeing
 
       section
-        h2 Before
+        h2 Most Projects Start Like This:
         h3 JavaScript files are included as HTML script tags
         hr
         pre
@@ -89,17 +89,48 @@ html
             &lt;/body&gt;
 
       section
-        h2 After
+        h1 This Is Fine...
+        ul
+          li
+          li
+            h3 If you don't have many dependencies
+          li
+            h3 If you do not care about page load performance
+          li
+            h3 If you like all of your JavaScript logic in one file
+
+      section
+        h1 This Is Better:
         h3 Only Require.js is included as an HTML script tag
         hr
         pre
           code.language-markup
-            &lt;head&gt;
+            &lt;body&gt;
             &lt;script src='require.js' data-main='init.js'&gt;&lt;/script&gt;
-            &lt;/head&gt;
+            &lt;/body&gt;
 
         hr
         h3 <code>data-main</code> - Tells Require.js what file to load first
+
+      section
+        h1 Huh?
+        hr
+        ul
+          li
+          li
+            h3 How Are My Files Getting Loaded?
+          li
+            h3 Do I have to Use the <code>data-main</code> Attribute?
+
+      section
+        h1 Oh!
+        hr
+        ul
+          li
+          li
+            h3 Require.js is now loading all of your JavaScript files
+          li
+            h3 The <code>data-main</code> attribute is a optional
 
       section(data-bespoke-hash='named-route')
         h2 Named Route
