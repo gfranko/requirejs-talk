@@ -19,6 +19,9 @@ html
         h1 RequireJS
         h3 A JavaScript Module Loader
         h5 Greg Franko
+        hr
+        hr
+        h6 1/30/2014
 
       section
         h2 Why Do People Use RequireJS?
@@ -97,7 +100,7 @@ html
           li
             h3 If you do not care about page load performance
           li
-            h3 If you like all of your JavaScript logic in one file
+            h3 If you don't like decoupled code
 
       section
         h1 This Is Better:
@@ -186,7 +189,7 @@ html
       section
         h1 If 
           a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
-          d Is Still Confusing...
+          d Is Confusing...
         ul
           li
           li
@@ -262,6 +265,105 @@ html
             h3 That's All There Is To The <code>require()</code> Method
 
       section
+        h1 If 
+          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require
+          d Is Confusing...
+        ul
+          li
+          li
+            h3 Let's See How It Would Look In Plain JavaScript
+          li
+            pre
+              code.language-javascript.
+                (function(exampleText) {
+                  // Prints: 'example.js return value: No dependencies, returns a string'
+                  console.log('example.js return value: ', exampleText);
+                }(example));
+
+      section
+        h1 Now What?
+        hr
+        ul
+          li
+          li
+            h3 Now That You Understand AMD Modules...
+          li
+            h3 Let Me Answer Your Question With A Question
+          li
+            h3 <strong>Have You Ever Used JavaScript Code That You Didn't Write?</strong>
+
+      section
+        h1 Third Party Libraries
+        hr
+        ul
+          li
+          li
+            h3 <strong>Cannot</strong> Assume AMD Is Being Used
+          li
+            h3 <strong>Can</strong> Still Provide Conditional Support
+          li
+            h3 <strong>SOME DON'T PROVIDE SUPPORT</strong>
+
+      section
+        h1 Third Party Examples
+
+      section
+        h1 jQuery
+        hr
+        h3 Provides AMD Support
+        ul
+          li
+            pre
+              code.language-javascript.
+                // jQuery Source
+                if ( typeof define === "function" && define.amd ) {
+                    define( "jquery", [], function() {
+                        return jQuery;
+                    });
+                }
+
+      section
+        h1 Lodash
+        hr
+        h3 Provides AMD Support
+        ul
+          li
+            pre
+              code.language-javascript.
+                // Lodash Source
+                if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+                  root._ = _;
+
+                  define(function() {
+                    return _;
+                  });
+                }
+
+      section
+        h1 Backbone
+        hr
+        h3 Does <strong>Not</strong> Provide AMD Support 
+          a(href='https://github.com/jashkenas/backbone/commit/ab5d2eb4c657ed81e80ac815f687e94a2cb55fef', target='_blank') yet
+        ul
+          li
+            pre
+              code.language-javascript.
+                // Backbone Source
+                var Backbone;
+                if (typeof exports !== 'undefined') {
+                  Backbone = exports;
+                } else {
+                  Backbone = root.Backbone = {};
+                }
+
+      section
+        h2 How Do You Use Scripts That Are Not AMD Compatible?
+        hr
+        ul
+          li
+          li
+            h3 The Magical RequireJS 
+              a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
 
     // build:js scripts/scripts.js
     script(src='bower_components/bespoke.js/dist/bespoke.min.js')
