@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Modular Workflow with Require.js</title>
+    <link rel="stylesheet" href="styles/styles.css"/>
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>RequireJS</h1>
+        <h3>A JavaScript Module Loader</h3>
+        <h5>Greg Franko</h5>
+        <hr>
+        <hr>
+        <h6>1/30/2014</h6>
+      </section>
+      <section>
+        <h2>About The Speaker</h2>
+        <hr><img src="images/gregfranko.png" class="profile-pic">
+        <hr>
+        <h3><strong>Greg Franko</strong></h3>
+        <h3>JavaScript Engineer at AddThis</h3>
+        <h3>Open Source Developer</h3>
+        <h3>Author</h3>
+        <h3>Speaker</h3>
+      </section>
+      <section>
+        <h2>Why Do People Use RequireJS?</h2>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/why.html" target="_blank">Performance</a></h2>
+        <h4>Asynchronous and Dynamic Loading</h4>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/whyamd.html" target="_blank">Maintainability</a></h2>
+        <h4>Decoupled Code into Modules</h4>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/optimization.html" target="_blank">Workflow</a></h2>
+        <h4>No Build Step Required</h4>
+      </section>
+      <section>
+        <h2>What Projects/Companies Use RequireJS?</h2>
+      </section>
+      <section>
+        <h2><a href="https://github.com/jquery/jquery/blob/master/build/tasks/build.js#L11" target="_blank">jQuery</a></h2>
+        <h4>Used in Development, Removed In Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://backstage.soundcloud.com/2012/06/building-the-next-soundcloud/" target="_blank">SoundCloud</a></h2>
+        <h4>RequireJS in Development, AlmondJS In Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://www.nearform.com/nodecrunch/release-the-kracken-how-paypal-is-being-revolutionized-by-node-js-and-lean-ux#.UuiYw2Qo7-Y" target="_blank">PayPal</a></h2>
+        <h4>Used In Both Development and Production</h4>
+      </section>
+      <section>
+        <h2><a href="http://www.bbc.co.uk/frameworks/requirejs" target="_blank">BBC News</a></h2>
+        <h4>Used In Both Development and Production</h4>
+      </section>
+      <section>
+        <h2><a href="https://www.addthis.com/get/smart-layers" target="_blank">AddThis</a></h2>
+        <h4>RequireJS in Development, AMDCleanJS In Production </h4>
+      </section>
+      <section>
+        <h2>Are You Using RequireJS?</h2>
+        <h4>It's Okay If You Aren't</h4>
+      </section>
+      <section>
+        <h2>RequireJS Basics</h2>
+        <h3>Let's Learn</h3>
+      </section>
+      <section>
+        <h2>Most Projects Start Like This:</h2>
+        <h3>JavaScript files are included as HTML script tags</h3>
+        <hr>
+        <pre><code class="language-markup">&lt;body&gt;
+&lt;script src='jquery.js'&gt;&lt;/script&gt;
+&lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
+&lt;script src='jquery.selectboxit.js'&gt;&lt;/script&gt;
+&lt;script src='lodash.js'&gt;&lt;/script&gt;
+&lt;script src='backbone.js'&gt;&lt;/script&gt;
+&lt;script src='init.js'&gt;&lt;/script&gt;
+&lt;script src='app.js'&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+      </section>
+      <section>
+        <h1>This Is Fine...</h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>If you don't have many dependencies</h3>
+          </li>
+          <li>
+            <h3>If you do not care about page load performance</h3>
+          </li>
+          <li>
+            <h3>If you don't like decoupled code</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>This Is Better:</h1>
+        <h3>Only Require.js is included as an HTML script tag</h3>
+        <hr>
+        <pre><code class="language-markup">&lt;body&gt;
+&lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        <hr>
+        <h3><code>data-main</code> - Tells Require.js what file to load first</h3>
+      </section>
+      <section>
+        <h1>Huh?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>How Are My Files Getting Loaded?</h3>
+          </li>
+          <li>
+            <h3>Do I have to Use the <code>data-main</code> Attribute?</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Oh!</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Require.js is now loading all of your JavaScript files</h3>
+          </li>
+          <li>
+            <h3>The <code>data-main</code> attribute is optional</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Is That It?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Unfortunately, No</h3>
+          </li>
+          <li>
+            <h3>Your JavaScript Files Must Be Written In A Format RequireJS Understands</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>What Format?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h2><a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank">AMD</a></h2>
+            <h3>Asynchronous Module Definition</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>AMD</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Module Format Used By RequireJS</h3>
+          </li>
+          <li>
+            <h3>Exposes Two Global Methods:</h3>
+            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define()</a></h3>
+            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require()</a></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define(id?, dependencies?, factory)</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Communicates a File's Dependencies and Return Value</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// example.js
+// Does not depend on any files and returns a string
+define(function() {
+  return 'No dependencies, returns a string';
+});
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+          <d>Is Confusing...</d>
+        </h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">var example = function() {
+  return 'No dependencies, returns a string';
+}();
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define(id?, dependencies?, factory)</a></h1>
+        <ul>
+          <li>
+            <h3>Let's Look At A Slightly More Complicated Example</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// getUser.js
+// Depends on a file (users.js), and returns a getUser function
+define(['./users'], function(users) {
+  return function getUser(username) {
+    return users[username];
+  };
+});
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+          <d>Is Still Confusing...</d>
+        </h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">var getUser = function(users) {
+  return function getUser(username) {
+    return users[username];
+  };
+}(usersCollection);
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Is That It?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Nope, There Are Many Ways To Define an AMD Module</h3>
+          </li>
+          <li>
+            <h3>Check Out More <a href="http://requirejs.org/docs/api.html#define" target="_blank">Module Definitions</a></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require(Array, Function)</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Loads One Or More AMD Modules</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">// Loads the example.js module from our first define() example
+require(['./example.js'], function(exampleText) {
+  // Prints: 'example.js return value: No dependencies, returns a string'
+  console.log('example.js return value: ', exampleText);
+})</code></pre>
+          </li>
+          <li>
+            <h3>That's All There Is To The <code>require()</code> Method</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require</a>
+          <d>Is Confusing...</d>
+        </h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">(function(exampleText) {
+  // Prints: 'example.js return value: No dependencies, returns a string'
+  console.log('example.js return value: ', exampleText);
+}(example));
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Now What?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Now That You Understand How To Create And Load AMD Modules...</h3>
+          </li>
+          <li>
+            <h3>Let Me Answer Your Question With A Question</h3>
+          </li>
+          <li>
+            <h3><strong>Have You Ever Used JavaScript Code That You Didn't Write?</strong></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Third Party Libraries</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3><strong>Cannot</strong> Assume AMD Is Being Used</h3>
+          </li>
+          <li>
+            <h3><strong>Can</strong> Still Provide Conditional Support</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>How Would A Third Party Library Provide AMD Support?</h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>By Conditionally Wrapping Itself in a <code>define</code> method</h3>
+            <pre><code class="language-javascript">// If an AMD compatible loader is on the page
+if ( typeof define === "function" && define.amd ) {
+    define([], function() {
+        return exampleLib;
+    });
+}
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Third Party Examples</h1>
+      </section>
+      <section>
+        <h1>jQuery</h1>
+        <hr>
+        <h3>Provides AMD Support via a <strong>Named AMD module</strong></h3>
+        <ul>
+          <li>
+            <pre><code class="language-javascript">// jQuery Source
+if ( typeof define === "function" && define.amd ) {
+    define( "jquery", [], function() {
+        return jQuery;
+    });
+}
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Lodash</h1>
+        <hr>
+        <h3>Provides AMD Support via an <strong>Anonymous AMD module</strong></h3>
+        <ul>
+          <li>
+            <pre><code class="language-javascript">// Lodash Source
+if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+  root._ = _;
+  
+  define(function() {
+    return _;
+  });
+}
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Backbone</h1>
+        <hr>
+        <h3>Does <strong>Not</strong> Provide AMD Support <a href="https://github.com/jashkenas/backbone/commit/ab5d2eb4c657ed81e80ac815f687e94a2cb55fef" target="_blank">yet</a></h3>
+        <ul>
+          <li>
+            <pre><code class="language-javascript">// Backbone Source
+var Backbone;
+if (typeof exports !== 'undefined') {
+  Backbone = exports;
+} else {
+  Backbone = root.Backbone = {};
+}
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>How Do You Use Scripts That Are Not AMD Compatible?</h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Use the RequireJS <a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h2>
+        <hr>
+        <h3>Useful for libraries that export a global variable</h3>
+        <pre><code class="language-javascript">requirejs.config({
+  shim: {
+    'backbone': {
+        deps: ['underscore', 'jquery'],
+        exports: 'Backbone'
+    }
+  }
+});
+</code></pre>
+      </section>
+      <section>
+        <h2>Is This Black Magic?</h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>No, RequireJS just creates a <code>define</code> wrapper for all shimmed libraries</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">define("backbone", ["underscore","jquery"], (function (global) {
+    return function () {
+        var ret, fn;
+        return ret || global.Backbone;
+    };
+}(this)));
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h2>
+        <hr>
+        <h3>Also Useful for Declaring Dependencies</h3>
+        <pre><code class="language-javascript">require.config({
+  shim: {
+    'jquery.ui.widget': ['jquery'],
+    
+    'jquery.selectBoxIt': ['jquery.ui.widget']
+  }
+});
+</code></pre>
+      </section>
+      <section>
+        <h1>Hold Up</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Can You Explain The <code>require.config()</code> Method?</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>RequireJS <a href="http://requirejs.org/docs/api.html#config" target="_blank">Config</a></h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>RequireJS allows you to set application-level configuration options</h3>
+          </li>
+          <li>
+            <h3>The configuration options should be set <strong>before</strong> you define/require any modules</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Popular <a href="http://requirejs.org/docs/api.html#config" target="_blank">Config Options</a></h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3><a href="http://requirejs.org/docs/api.html#config-baseUrl" target="_blank">baseurl</a></h3>
+            <The>The beginning file path that is used for all of the file lookups</The>
+          </li>
+          <li>
+            <h3><a href="http://requirejs.org/docs/api.html#config-paths" target="_blank">paths</a></h3>
+            <Allows>Allows you to map module ID's to alias name (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')</Allows>
+          </li>
+          <li>
+            <h3><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">shim</a></h3>
+            <Allows>Allows you to make third-party libraries AMD compatible</Allows>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Let's Review</h1>
+        <ul>
+          <li></li>
+          <li>
+            <h3><code>Define()</code> allows you to create AMD modules</h3>
+          </li>
+          <li>
+            <h3><code>Require()</code> explicitly loads one or more AMD modules</h3>
+          </li>
+          <li>
+            <h3>RequireJS configuration options provide flexibility and convenience</h3>
+          </li>
+          <li>
+            <h3><strong>Last but not least...</strong></h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Building with <a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h2>
+      </section>
+      <section>
+        <h1><a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Node.js Command-Line Build Tool</h3>
+          </li>
+          <li>
+            <h3>Concatenates Your AMD Project Into One File</h3>
+          </li>
+          <li>
+            <h3>A Ton Of <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L527" target="_blank">Options</a></h3>
+          </li>
+          <li>
+            <h3>Can Be Used with Grunt or Gulp</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Example Build Profile</h2>
+        <pre><code class="language-javascript">{
+  baseUrl: "public/js/",
+  paths: {
+    "desktop": "app/config/Init"
+  },
+  optimize: "uglify",
+  mainConfigFile: "public/js/app/config/Init.js",
+  include: ["desktop"],
+  out: "public/js/app/config/Init.min.js"
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Common Optimizer Questions</h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>I thought RequireJS Didn't Require A Build Step?</h3>
+            <h4>It doesn't, the optimizer is optional.</h4>
+          </li>
+          <li>
+            <h3>Why Would I use the RequireJS Optimizer?</h3>
+            <h4>If you want to build your project into one file</h4>
+          </li>
+          <li>
+            <h3>Do I Still Need Require.js After I Build?</h3>
+            <h4>If you need to load any additional network resources with RequireJS, then yes.  Otherwise, you may use <a href='https://github.com/jrburke/almond/blob/master/almond.js' target='_blank'>Almond.js</a> or <a href='https://github.com/gfranko/amdclean' target='_blank'>AMDClean.js</a>.</h4>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="https://github.com/jrburke/almond" target="_blank">Almond.js</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>A Minimal (~400 line) RequireJS Replacement After Optimized Builds</h3>
+          </li>
+          <li>
+            <h3>Does Not Allow Loading Network Resources</h3>
+          </li>
+          <li>
+            <h3>Does Not Transform Source Code</h3>
+          </li>
+          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js" target="_blank">Example Build With Almond.js</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="http://gregfranko.com/amdclean/" target="_blank">AMDClean.js</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>An AMD Build Tool That Converts AMD Code To Standard JavaScript</h3>
+          </li>
+          <li>
+            <h3>Allows You To Use AMD In Development Without Having To Include an AMD Library In Production</h3>
+          </li>
+          <li>
+            <h3>Does Not Allow Loading Network Resources</h3>
+          </li>
+          <li>
+            <h3>Transforms Source Code</h3>
+          </li>
+          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate/blob/master/Gruntfile.js" target="_blank">Example Build With AMDClean.js</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>For A Complete Example, Check Out: </h2>
+        <hr>
+        <h2><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate" target="_blank">Backbone-Require-Boilerplate</a></h2>
+      </section>
+      <section>
+        <h2>Addtional Topics That May Interest You</h2>
+        <hr>
+        <h3>Browserify vs RequireJS</h3>
+        <h3>Using CommonJS syntax with RequireJS</h3>
+        <h3>ES6 Modules</h3>
+      </section>
+      <section>
+        <h1>Thanks!</h1>
+        <hr>
+        <h3><strong>Twitter: </strong><a href='https://twitter.com/GregFranko' target='_blank'>GregFranko</a></h3>
+        <h3><strong>Github: </strong><a href='https://github.com/gfranko' target='_blank'>gfranko</a></h3>
+      </section>
+    </article>
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html>
