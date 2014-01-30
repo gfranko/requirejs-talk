@@ -20,6 +20,16 @@
         <h6>1/30/2014</h6>
       </section>
       <section>
+        <h2>About The Speaker</h2>
+        <hr><img src="images/gregfranko.png" class="profile-pic">
+        <hr>
+        <h3><strong>Greg Franko</strong></h3>
+        <h3>JavaScript Engineer at AddThis</h3>
+        <h3>Open Source Developer</h3>
+        <h3>Author</h3>
+        <h3>Speaker</h3>
+      </section>
+      <section>
         <h2>Why Do People Use RequireJS?</h2>
       </section>
       <section>
@@ -470,7 +480,7 @@ if (typeof exports !== 'undefined') {
         </ul>
       </section>
       <section>
-        <h2>Popular Config Options</h2>
+        <h2>Popular <a href="http://requirejs.org/docs/api.html#config" target="_blank">Config Options</a></h2>
         <hr>
         <ul>
           <li></li>
@@ -501,7 +511,117 @@ if (typeof exports !== 'undefined') {
           <li>
             <h3>RequireJS configuration options provide flexibility and convenience</h3>
           </li>
+          <li>
+            <h3><strong>Last but not least...</strong></h3>
+          </li>
         </ul>
+      </section>
+      <section>
+        <h2>Building with <a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h2>
+      </section>
+      <section>
+        <h1><a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Node.js Command-Line Build Tool</h3>
+          </li>
+          <li>
+            <h3>Concatenates Your AMD Project Into One File</h3>
+          </li>
+          <li>
+            <h3>A Ton Of <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L527" target="_blank">Options</a></h3>
+          </li>
+          <li>
+            <h3>Can Be Used with Grunt or Gulp</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Example Build Profile</h2>
+        <pre><code class="language-javascript">{
+  baseUrl: "public/js/",
+  paths: {
+    "desktop": "app/config/Init"
+  },
+  optimize: "uglify",
+  mainConfigFile: "public/js/app/config/Init.js",
+  include: ["desktop"],
+  out: "public/js/app/config/Init.min.js"
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Common Optimizer Questions</h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>I thought RequireJS Didn't Require A Build Step?</h3>
+            <h4>It doesn't, the optimizer is optional.</h4>
+          </li>
+          <li>
+            <h3>Why Would I use the RequireJS Optimizer?</h3>
+            <h4>If you want to build your project into one file</h4>
+          </li>
+          <li>
+            <h3>Do I Still Need Require.js After I Build?</h3>
+            <h4>If you need to load any additional network resources with RequireJS, then yes.  Otherwise, you may use <a href='https://github.com/jrburke/almond/blob/master/almond.js' target='_blank'>Almond.js</a> or <a href='https://github.com/gfranko/amdclean' target='_blank'>AMDClean.js</a>.</h4>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="https://github.com/jrburke/almond" target="_blank">Almond.js</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>A Minimal (~400 line) RequireJS Replacement After Optimized Builds</h3>
+          </li>
+          <li>
+            <h3>Does Not Allow Loading Network Resources</h3>
+          </li>
+          <li>
+            <h3>Does Not Transform Source Code</h3>
+          </li>
+          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js" target="_blank">Example Build With Almond.js</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="http://gregfranko.com/amdclean/" target="_blank">AMDClean.js</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>An AMD Build Tool That Converts AMD Code To Standard JavaScript</h3>
+          </li>
+          <li>
+            <h3>Allows You To Use AMD In Development Without Having To Include an AMD Library In Production</h3>
+          </li>
+          <li>
+            <h3>Does Not Allow Loading Network Resources</h3>
+          </li>
+          <li>
+            <h3>Transforms Source Code</h3>
+          </li>
+          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate/blob/master/Gruntfile.js" target="_blank">Example Build With AMDClean.js</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>For A Complete Example, Check Out: </h2>
+        <hr>
+        <h2><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate" target="_blank">Backbone-Require-Boilerplate</a></h2>
+      </section>
+      <section>
+        <h2>Addtional Topics That May Interest You</h2>
+        <hr>
+        <h3>Browserify vs RequireJS</h3>
+        <h3>Using CommonJS syntax with RequireJS</h3>
+        <h3>ES6 Modules</h3>
+      </section>
+      <section>
+        <h1>Thanks!</h1>
+        <hr>
+        <h3><strong>Twitter: </strong><a href='https://twitter.com/GregFranko' target='_blank'>GregFranko</a></h3>
+        <h3><strong>Github: </strong><a href='https://github.com/gfranko' target='_blank'>gfranko</a></h3>
       </section>
     </article>
     <!-- build:js scripts/scripts.js-->
