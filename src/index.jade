@@ -171,8 +171,8 @@ html
               a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require()
 
       section
-        h1
-          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define()
+        h2
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define(id?, dependencies?, factory)
         ul
           li
           li
@@ -203,7 +203,7 @@ html
 
       section
         h1
-          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define()
+          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define(id?, dependencies?, factory)
         ul
           li
             h3 Let's Look At A Slightly More Complicated Example
@@ -212,7 +212,7 @@ html
               code.language-javascript.
                 // getUser.js
                 // Depends on a file (users.js), and returns a getUser function
-                define(['./users']function(users) {
+                define(['./users'], function(users) {
                   return function getUser(username) {
                     return users[username];
                   };
@@ -241,14 +241,14 @@ html
         ul
           li
           li
-            h3 Nope, There Are Many More Ways To Define an AMD Module
+            h3 Nope, There Are Many Ways To Define an AMD Module
           li
             h3 Check Out More 
               a(href='http://requirejs.org/docs/api.html#define', target='_blank') Module Definitions
 
       section
-        h1
-          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require()
+        h2
+          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require(Array, Function)
         ul
           li
           li
@@ -286,7 +286,7 @@ html
         ul
           li
           li
-            h3 Now That You Understand AMD Modules...
+            h3 Now That You Understand How To Create And Load AMD Modules...
           li
             h3 Let Me Answer Your Question With A Question
           li
@@ -324,7 +324,7 @@ html
       section
         h1 jQuery
         hr
-        h3 Provides AMD Support
+        h3 Provides AMD Support via a <strong>Named AMD module</strong>
         ul
           li
             pre
@@ -339,7 +339,7 @@ html
       section
         h1 Lodash
         hr
-        h3 Provides AMD Support
+        h3 Provides AMD Support via an <strong>Anonymous AMD module</strong>
         ul
           li
             pre
@@ -419,13 +419,64 @@ html
         h3 Also Useful for Declaring Dependencies
         pre
           code.language-javascript.
-            requirejs.config({
+            require.config({
               shim: {
                 'jquery.ui.widget': ['jquery'],
 
                 'jquery.selectBoxIt': ['jquery.ui.widget']
               }
             });
+
+      section
+        h1 Hold Up
+        hr
+        ul
+          li
+          li
+            h3 Can You Explain The <code>require.config()</code> Method?
+
+      section
+        h2 RequireJS 
+          a(href='http://requirejs.org/docs/api.html#config', target='_blank') Config
+        hr
+        ul
+          li
+          li
+            h3 RequireJS allows you to set application-level configuration options
+          li
+            h3 The configuration options should be set <strong>before</strong> you define/require any modules
+
+      section
+        h2 Popular Config Options
+        hr
+        ul
+          li
+          li
+            h3
+              a(href='http://requirejs.org/docs/api.html#config-baseUrl', target='_blank') baseurl
+            The The beginning file path that is used for all of the file lookups
+          li
+            h3
+              a(href='http://requirejs.org/docs/api.html#config-paths', target='_blank') paths
+            Allows Allows you to map module ID's to alias name (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')
+
+          li
+            h3
+              a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') shim
+            Allows Allows you to make third-party libraries AMD compatible
+
+      section
+        h1 Let's Review
+        ul
+          li
+          li
+            h3 <code>Define()</code> allows you to create AMD modules
+          li
+            h3 <code>Require()</code> explicitly loads one or more AMD modules
+          li
+            h3 RequireJS configuration options provide flexibility and convenience
+
+
 
 
     // build:js scripts/scripts.js
