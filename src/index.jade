@@ -95,7 +95,6 @@ html
             &lt;body&gt;
             &lt;script src='jquery.js'&gt;&lt;/script&gt;
             &lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
-            &lt;script src='jquery.selectboxit.js'&gt;&lt;/script&gt;
             &lt;script src='lodash.js'&gt;&lt;/script&gt;
             &lt;script src='backbone.js'&gt;&lt;/script&gt;
             &lt;script src='init.js'&gt;&lt;/script&gt;
@@ -109,7 +108,7 @@ html
           li
             h3 If you don't have many dependencies
           li
-            h3 If you do not care about page load performance
+            h3 If you don't care about page load performance
           li
             h3 If you don't like decoupled code
 
@@ -124,37 +123,26 @@ html
             &lt;/body&gt;
 
         hr
-        h3 <code>data-main</code> - Tells Require.js what file to load first
+        h3 <code>data-main</code> - Tells Require.js to load <code>init.js</code> first
 
       section
         h1 Huh?
         hr
-        ul
-          li
-          li
-            h3 How Are My Files Getting Loaded?
-          li
-            h3 Do I have to Use the <code>data-main</code> Attribute?
+        h3 <code>init.js</code> is getting loaded, but none of my other JavaScript files are
+        h3 <strong>RequireJS is the worst</strong>
 
       section
-        h1 Oh!
+        h1 Everything Will Be Okay!
+        hr
+        h3 You haven't told RequireJS that <code>init.js</code> depends on <i>jQuery</i>, <i>jQueryUI</i>, <i>Lodash</i>, and <i>Backbone</i>
+
+      section
+        h2 How Do I Tell RequireJS About My File Dependencies?
         hr
         ul
           li
           li
-            h3 Require.js is now loading all of your JavaScript files
-          li
-            h3 The <code>data-main</code> attribute is optional
-
-      section
-        h1 Is That It?
-        hr
-        ul
-          li
-          li
-            h3 Unfortunately, No
-          li
-            h3 Your JavaScript Files Must Be Written In A Format RequireJS Understands
+            h3 By writing <code>init.js</code> in a format that Requirejs understands
 
       section
         h1 What Format?
@@ -166,6 +154,26 @@ html
               a(href='https://github.com/amdjs/amdjs-api/wiki/AMD', target='_blank') AMD
 
             h3 Asynchronous Module Definition
+
+      section
+        h1 init.js AMD Example
+        pre
+          code.language-javascript.
+            // init.js
+            // Depends on jQuery, jQueryUI, Lodash, and Backbone
+            define(['jquery', 'jqueryui', 'lodash', 'backbone'], function($, null, _, Backbone) {
+              /* This function get's called after
+                jquery.js, jqueryui.js, lodash.js,
+                and backbone.js are loaded
+              */
+            });
+
+      section
+        h1 Awesome, It Works!
+        hr
+        h3 <strong>RequireJS Is The Best</strong>
+        h3 Please Tell Me More About AMD
+
 
       section
         h1 AMD
@@ -189,6 +197,10 @@ html
           li
             h3 Communicates a File's Dependencies and Return Value
           li
+            Can Can return any type of value (e.g object, function, string) and defaults to <code>undefined</code> if no return value is specified.
+          li
+            The The <code>module id</code> and <code>dependencies</code> arguments are <strong>optional</strong>
+          li
             pre
               code.language-javascript.
                 // example.js
@@ -198,9 +210,9 @@ html
                 });
 
       section
-        h1 If 
+        h2 If 
           a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
-          d Is Confusing...
+          d Is Confusing You...
         ul
           li
           li
@@ -213,7 +225,7 @@ html
                 }();
 
       section
-        h1
+        h2
           a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define(id?, dependencies?, factory)
         ul
           li
@@ -230,7 +242,7 @@ html
                 });
 
       section
-        h1 If 
+        h2 If 
           a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
           d Is Still Confusing...
         ul
@@ -276,20 +288,16 @@ html
             h3 That's All There Is To The <code>require()</code> Method
 
       section
-        h1 If 
-          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require
-          d Is Confusing...
+        h2 Should I Use <code>define</code> or <code>require</code>?
+        hr
         ul
           li
           li
-            h3 Let's See How It Would Look In Plain JavaScript
+            h2 <strong>You Should Use Both</strong>
           li
-            pre
-              code.language-javascript.
-                (function(exampleText) {
-                  // Prints: 'example.js return value: No dependencies, returns a string'
-                  console.log('example.js return value: ', exampleText);
-                }(example));
+            h3 Use <code>define</code> to wrap logic that you would like to re-use somewhere else in your application
+          li
+            h3 Use <code>require</code> when you just want a dependency to be loaded onto the page.
 
       section
         h1 Now What?
@@ -470,7 +478,7 @@ html
           li
             h3
               a(href='http://requirejs.org/docs/api.html#config-paths', target='_blank') paths
-            Allows Allows you to map module ID's to alias name (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')
+            Allows Allows you to map module IDs to alias names (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')
 
           li
             h3
@@ -484,7 +492,7 @@ html
           li
             h3 <code>Define()</code> allows you to create AMD modules
           li
-            h3 <code>Require()</code> explicitly loads one or more AMD modules
+            h3 <code>Require()</code> allows you to load one or more AMD modules onto the page
           li
             h3 RequireJS configuration options provide flexibility and convenience
           li
@@ -536,7 +544,7 @@ html
             h3 Why Would I use the RequireJS Optimizer?
             h4 If you want to build your project into one file
           li
-            h3 Do I Still Need Require.js After I Build?
+            h3 Do I Still Need RequireJS After I Build?
             h4 If you need to load any additional network resources with RequireJS, then yes.  Otherwise, you may use <a href='https://github.com/jrburke/almond/blob/master/almond.js' target='_blank'>Almond.js</a> or <a href='https://github.com/gfranko/amdclean' target='_blank'>AMDClean.js</a>.
 
       section
@@ -576,11 +584,11 @@ html
           a(href='https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate', target='_blank') Backbone-Require-Boilerplate
 
       section
-        h2 Addtional Topics That May Interest You
+        h2 Additional Topics That May Interest You
         hr
         h3 Browserify vs RequireJS
         h3 Using CommonJS syntax with RequireJS
-        h3 ES6 Modules
+        h3 ES6 Modules and The Future
 
       section
         h1 Thanks!

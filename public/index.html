@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Modular Workflow with Require.js</title>
-    <!-- build:css styles/styles.css-->
-    <link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-tomorrow.css">
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <!-- endbuild-->
+    <link rel="stylesheet" href="styles/styles.css"/>
   </head>
   <body>
     <article>
@@ -82,7 +79,6 @@
         <pre><code class="language-markup">&lt;body&gt;
 &lt;script src='jquery.js'&gt;&lt;/script&gt;
 &lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
-&lt;script src='jquery.selectboxit.js'&gt;&lt;/script&gt;
 &lt;script src='lodash.js'&gt;&lt;/script&gt;
 &lt;script src='backbone.js'&gt;&lt;/script&gt;
 &lt;script src='init.js'&gt;&lt;/script&gt;
@@ -97,7 +93,7 @@
             <h3>If you don't have many dependencies</h3>
           </li>
           <li>
-            <h3>If you do not care about page load performance</h3>
+            <h3>If you don't care about page load performance</h3>
           </li>
           <li>
             <h3>If you don't like decoupled code</h3>
@@ -112,44 +108,26 @@
 &lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
 &lt;/body&gt;</code></pre>
         <hr>
-        <h3><code>data-main</code> - Tells Require.js what file to load first</h3>
+        <h3><code>data-main</code> - Tells Require.js to load <code>init.js</code> first</h3>
       </section>
       <section>
         <h1>Huh?</h1>
         <hr>
-        <ul>
-          <li></li>
-          <li>
-            <h3>How Are My Files Getting Loaded?</h3>
-          </li>
-          <li>
-            <h3>Do I have to Use the <code>data-main</code> Attribute?</h3>
-          </li>
-        </ul>
+        <h3><code>init.js</code> is getting loaded, but none of my other JavaScript files are</h3>
+        <h3><strong>RequireJS is the worst</strong></h3>
       </section>
       <section>
-        <h1>Oh!</h1>
+        <h1>Everything Will Be Okay!</h1>
+        <hr>
+        <h3>You haven't told RequireJS that <code>init.js</code> depends on <i>jQuery</i>, <i>jQueryUI</i>, <i>Lodash</i>, and <i>Backbone</i></h3>
+      </section>
+      <section>
+        <h2>How Do I Tell RequireJS About My File Dependencies?</h2>
         <hr>
         <ul>
           <li></li>
           <li>
-            <h3>Require.js is now loading all of your JavaScript files</h3>
-          </li>
-          <li>
-            <h3>The <code>data-main</code> attribute is optional</h3>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h1>Is That It?</h1>
-        <hr>
-        <ul>
-          <li></li>
-          <li>
-            <h3>Unfortunately, No</h3>
-          </li>
-          <li>
-            <h3>Your JavaScript Files Must Be Written In A Format RequireJS Understands</h3>
+            <h3>By writing <code>init.js</code> in a format that Requirejs understands</h3>
           </li>
         </ul>
       </section>
@@ -163,6 +141,24 @@
             <h3>Asynchronous Module Definition</h3>
           </li>
         </ul>
+      </section>
+      <section>
+        <h1>init.js AMD Example</h1>
+        <pre><code class="language-javascript">// init.js
+// Depends on jQuery, jQueryUI, Lodash, and Backbone
+define(['jquery', 'jqueryui', 'lodash', 'backbone'], function($, null, _, Backbone) {
+  /* This function get's called after
+    jquery.js, jqueryui.js, lodash.js,
+    and backbone.js are loaded
+  */
+});
+</code></pre>
+      </section>
+      <section>
+        <h1>Awesome, It Works!</h1>
+        <hr>
+        <h3><strong>RequireJS Is The Best</strong></h3>
+        <h3>Please Tell Me More About AMD</h3>
       </section>
       <section>
         <h1>AMD</h1>
@@ -187,6 +183,12 @@
             <h3>Communicates a File's Dependencies and Return Value</h3>
           </li>
           <li>
+            <Can>Can return any type of value (e.g object, function, string) and defaults to <code>undefined</code> if no return value is specified.</Can>
+          </li>
+          <li>
+            <The>The <code>module id</code> and <code>dependencies</code> arguments are <strong>optional</strong></The>
+          </li>
+          <li>
             <pre><code class="language-javascript">// example.js
 // Does not depend on any files and returns a string
 define(function() {
@@ -197,9 +199,9 @@ define(function() {
         </ul>
       </section>
       <section>
-        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
-          <d>Is Confusing...</d>
-        </h1>
+        <h2>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+          <d>Is Confusing You...</d>
+        </h2>
         <ul>
           <li></li>
           <li>
@@ -214,7 +216,7 @@ define(function() {
         </ul>
       </section>
       <section>
-        <h1><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define(id?, dependencies?, factory)</a></h1>
+        <h2><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define(id?, dependencies?, factory)</a></h2>
         <ul>
           <li>
             <h3>Let's Look At A Slightly More Complicated Example</h3>
@@ -232,9 +234,9 @@ define(['./users'], function(users) {
         </ul>
       </section>
       <section>
-        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+        <h2>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
           <d>Is Still Confusing...</d>
-        </h1>
+        </h2>
         <ul>
           <li></li>
           <li>
@@ -283,20 +285,18 @@ require(['./example.js'], function(exampleText) {
         </ul>
       </section>
       <section>
-        <h1>If <a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require</a>
-          <d>Is Confusing...</d>
-        </h1>
+        <h2>Should I Use <code>define</code> or <code>require</code>?</h2>
+        <hr>
         <ul>
           <li></li>
           <li>
-            <h3>Let's See How It Would Look In Plain JavaScript</h3>
+            <h2><strong>You Should Use Both</strong></h2>
           </li>
           <li>
-            <pre><code class="language-javascript">(function(exampleText) {
-  // Prints: 'example.js return value: No dependencies, returns a string'
-  console.log('example.js return value: ', exampleText);
-}(example));
-</code></pre>
+            <h3>Use <code>define</code> to wrap logic that you would like to re-use somewhere else in your application</h3>
+          </li>
+          <li>
+            <h3>Use <code>require</code> when you just want a dependency to be loaded onto the page.</h3>
           </li>
         </ul>
       </section>
@@ -490,7 +490,7 @@ if (typeof exports !== 'undefined') {
           </li>
           <li>
             <h3><a href="http://requirejs.org/docs/api.html#config-paths" target="_blank">paths</a></h3>
-            <Allows>Allows you to map module ID's to alias name (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')</Allows>
+            <Allows>Allows you to map module IDs to alias names (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')</Allows>
           </li>
           <li>
             <h3><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">shim</a></h3>
@@ -506,7 +506,7 @@ if (typeof exports !== 'undefined') {
             <h3><code>Define()</code> allows you to create AMD modules</h3>
           </li>
           <li>
-            <h3><code>Require()</code> explicitly loads one or more AMD modules</h3>
+            <h3><code>Require()</code> allows you to load one or more AMD modules onto the page</h3>
           </li>
           <li>
             <h3>RequireJS configuration options provide flexibility and convenience</h3>
@@ -565,7 +565,7 @@ if (typeof exports !== 'undefined') {
             <h4>If you want to build your project into one file</h4>
           </li>
           <li>
-            <h3>Do I Still Need Require.js After I Build?</h3>
+            <h3>Do I Still Need RequireJS After I Build?</h3>
             <h4>If you need to load any additional network resources with RequireJS, then yes.  Otherwise, you may use <a href='https://github.com/jrburke/almond/blob/master/almond.js' target='_blank'>Almond.js</a> or <a href='https://github.com/gfranko/amdclean' target='_blank'>AMDClean.js</a>.</h4>
           </li>
         </ul>
@@ -611,11 +611,11 @@ if (typeof exports !== 'undefined') {
         <h2><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate" target="_blank">Backbone-Require-Boilerplate</a></h2>
       </section>
       <section>
-        <h2>Addtional Topics That May Interest You</h2>
+        <h2>Additional Topics That May Interest You</h2>
         <hr>
         <h3>Browserify vs RequireJS</h3>
         <h3>Using CommonJS syntax with RequireJS</h3>
-        <h3>ES6 Modules</h3>
+        <h3>ES6 Modules and The Future</h3>
       </section>
       <section>
         <h1>Thanks!</h1>
@@ -624,18 +624,6 @@ if (typeof exports !== 'undefined') {
         <h3><strong>Github: </strong><a href='https://github.com/gfranko' target='_blank'>gfranko</a></h3>
       </section>
     </article>
-    <!-- build:js scripts/scripts.js-->
-    <script src="bower_components/bespoke.js/dist/bespoke.min.js"></script>
-    <script src="bower_components/bespoke-keys/dist/bespoke-keys.min.js"></script>
-    <script src="bower_components/bespoke-touch/dist/bespoke-touch.min.js"></script>
-    <script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script>
-    <script src="bower_components/bespoke-scale/dist/bespoke-scale.min.js"></script>
-    <script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script>
-    <script src="bower_components/bespoke-progress/dist/bespoke-progress.min.js"></script>
-    <script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script>
-    <script src="bower_components/bespoke-forms/dist/bespoke-forms.min.js"></script>
-    <script src="bower_components/prism/prism.js"></script>
-    <script src="scripts/main.js"></script>
-    <!-- endbuild-->
+    <script src="scripts/scripts.js"></script>
   </body>
 </html>

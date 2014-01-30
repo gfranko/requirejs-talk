@@ -359,7 +359,7 @@ h1 {
   margin-bottom: 16px;
 }
 h2 {
-  font-size: 42px;
+  font-size: 40px;
   letter-spacing: -1px;
   margin-bottom: 8px;
 }
@@ -387,6 +387,7 @@ a {
   color: #0089f3;
   text-decoration: none;
 }
-.requirejs-logo {
-  width: 300px;
+.profile-pic {
+  width: 125px;
+  height: 200px;
 }
