@@ -79,7 +79,6 @@
         <pre><code class="language-markup">&lt;body&gt;
 &lt;script src='jquery.js'&gt;&lt;/script&gt;
 &lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
-&lt;script src='jquery.selectboxit.js'&gt;&lt;/script&gt;
 &lt;script src='lodash.js'&gt;&lt;/script&gt;
 &lt;script src='backbone.js'&gt;&lt;/script&gt;
 &lt;script src='init.js'&gt;&lt;/script&gt;
@@ -109,30 +108,26 @@
 &lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
 &lt;/body&gt;</code></pre>
         <hr>
-        <h3><code>data-main</code> - Tells Require.js what file to load first</h3>
+        <h3><code>data-main</code> - Tells Require.js to load <code>init.js</code> first</h3>
       </section>
       <section>
         <h1>Huh?</h1>
         <hr>
-        <h3>How Are My Files Getting Loaded?</h3>
-        <h3>Do I have to Use the <code>data-main</code> Attribute?</h3>
+        <h3><code>init.js</code> is getting loaded, but none of my other JavaScript files are</h3>
+        <h3><strong>RequireJS is the worst</strong></h3>
       </section>
       <section>
-        <h1>Oh!</h1>
+        <h1>Everything Will Be Okay!</h1>
         <hr>
-        <h3>Require.js is now loading all of your JavaScript files</h3>
-        <h3>The <code>data-main</code> attribute is optional</h3>
+        <h3>You haven't told RequireJS that <code>init.js</code> depends on <i>jQuery</i>, <i>jQueryUI</i>, <i>Lodash</i>, and <i>Backbone</i></h3>
       </section>
       <section>
-        <h1>Is That It?</h1>
+        <h2>How Do I Tell RequireJS About My File Dependencies?</h2>
         <hr>
         <ul>
           <li></li>
           <li>
-            <h3>Unfortunately, No</h3>
-          </li>
-          <li>
-            <h3>Your JavaScript Files Must Be Written In A Format RequireJS Understands</h3>
+            <h3>By writing <code>init.js</code> in a format that Requirejs understands</h3>
           </li>
         </ul>
       </section>
@@ -146,6 +141,24 @@
             <h3>Asynchronous Module Definition</h3>
           </li>
         </ul>
+      </section>
+      <section>
+        <h1>init.js AMD Example</h1>
+        <pre><code class="language-javascript">// init.js
+// Depends on jQuery, jQueryUI, Lodash, and Backbone
+define(['jquery', 'jqueryui', 'lodash', 'backbone'], function($, null, _, Backbone) {
+  /* This function get's called after
+    jquery.js, jqueryui.js, lodash.js,
+    and backbone.js are loaded
+  */
+});
+</code></pre>
+      </section>
+      <section>
+        <h1>Awesome, It Works!</h1>
+        <hr>
+        <h3><strong>RequireJS Is The Best</strong></h3>
+        <h3>Please Tell Me More About AMD</h3>
       </section>
       <section>
         <h1>AMD</h1>
@@ -170,6 +183,12 @@
             <h3>Communicates a File's Dependencies and Return Value</h3>
           </li>
           <li>
+            <Can>Can return any type of value (e.g object, function, string) and defaults to <code>undefined</code> if no return value is specified.</Can>
+          </li>
+          <li>
+            <The>The <code>module id</code> and <code>dependencies</code> arguments are <strong>optional</strong></The>
+          </li>
+          <li>
             <pre><code class="language-javascript">// example.js
 // Does not depend on any files and returns a string
 define(function() {
@@ -181,7 +200,7 @@ define(function() {
       </section>
       <section>
         <h2>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
-          <d>Is Confusing...</d>
+          <d>Is Confusing You...</d>
         </h2>
         <ul>
           <li></li>
@@ -262,6 +281,22 @@ require(['./example.js'], function(exampleText) {
           </li>
           <li>
             <h3>That's All There Is To The <code>require()</code> Method</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Should I Use <code>define</code> or <code>require</code>?</h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h2><strong>You Should Use Both</strong></h2>
+          </li>
+          <li>
+            <h3>Use <code>define</code> to wrap logic that you would like to re-use somewhere else in your application</h3>
+          </li>
+          <li>
+            <h3>Use <code>require</code> when you just want a dependency to be loaded onto the page.</h3>
           </li>
         </ul>
       </section>
@@ -576,11 +611,11 @@ if (typeof exports !== 'undefined') {
         <h2><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate" target="_blank">Backbone-Require-Boilerplate</a></h2>
       </section>
       <section>
-        <h2>Addtional Topics That May Interest You</h2>
+        <h2>Additional Topics That May Interest You</h2>
         <hr>
         <h3>Browserify vs RequireJS</h3>
         <h3>Using CommonJS syntax with RequireJS</h3>
-        <h3>ES6 Modules</h3>
+        <h3>ES6 Modules and The Future</h3>
       </section>
       <section>
         <h1>Thanks!</h1>
