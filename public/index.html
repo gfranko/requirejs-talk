@@ -317,8 +317,22 @@ require(['./example.js'], function(exampleText) {
           <li>
             <h3><strong>Can</strong> Still Provide Conditional Support</h3>
           </li>
+        </ul>
+      </section>
+      <section>
+        <h2>How Would A Third Party Library Provide AMD Support?</h2>
+        <hr>
+        <ul>
+          <li></li>
           <li>
-            <h3><strong>SOME DON'T PROVIDE SUPPORT</strong></h3>
+            <h3>By Conditionally Wrapping Itself in a <code>define</code> method</h3>
+            <pre><code class="language-javascript">// If an AMD compatible loader is on the page
+if ( typeof define === "function" && define.amd ) {
+    define([], function() {
+        return exampleLib;
+    });
+}
+</code></pre>
           </li>
         </ul>
       </section>
@@ -382,9 +396,56 @@ if (typeof exports !== 'undefined') {
         <ul>
           <li></li>
           <li>
-            <h3>The Magical RequireJS <a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h3>
+            <h3>Use the RequireJS <a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h3>
           </li>
         </ul>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h2>
+        <hr>
+        <h3>Useful for libraries that export a global variable</h3>
+        <pre><code class="language-javascript">requirejs.config({
+  shim: {
+    'backbone': {
+        deps: ['underscore', 'jquery'],
+        exports: 'Backbone'
+    }
+  }
+});
+</code></pre>
+      </section>
+      <section>
+        <h2>Is This Black Magic?</h2>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>No, RequireJS just creates a <code>define</code> wrapper for all shimmed libraries</h3>
+          </li>
+          <li>
+            <pre><code class="language-javascript">define("backbone", ["underscore","jquery"], (function (global) {
+    return function () {
+        var ret, fn;
+        return ret || global.Backbone;
+    };
+}(this)));
+</code></pre>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2><a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h2>
+        <hr>
+        <h3>Also Useful for Declaring Dependencies</h3>
+        <pre><code class="language-javascript">requirejs.config({
+  shim: {
+    'jquery.ui.widget': ['jquery'],
+    
+    'jquery.selectBoxIt': ['jquery.ui.widget']
+  }
+});
+
+</code></pre>
       </section>
     </article>
     <!-- build:js scripts/scripts.js-->

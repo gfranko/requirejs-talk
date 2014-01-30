@@ -301,8 +301,22 @@ html
             h3 <strong>Cannot</strong> Assume AMD Is Being Used
           li
             h3 <strong>Can</strong> Still Provide Conditional Support
+
+      section
+        h2 How Would A Third Party Library Provide AMD Support?
+        hr
+        ul
           li
-            h3 <strong>SOME DON'T PROVIDE SUPPORT</strong>
+          li
+            h3 By Conditionally Wrapping Itself in a <code>define</code> method
+            pre
+              code.language-javascript.
+                // If an AMD compatible loader is on the page
+                if ( typeof define === "function" && define.amd ) {
+                    define([], function() {
+                        return exampleLib;
+                    });
+                }
 
       section
         h1 Third Party Examples
@@ -362,8 +376,57 @@ html
         ul
           li
           li
-            h3 The Magical RequireJS 
+            h3 Use the RequireJS 
               a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
+
+      section
+        h2
+          a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
+        hr
+        h3 Useful for libraries that export a global variable
+        pre
+          code.language-javascript.
+            requirejs.config({
+              shim: {
+                'backbone': {
+                    deps: ['underscore', 'jquery'],
+                    exports: 'Backbone'
+                }
+              }
+            });
+
+      section
+        h2 Is This Black Magic?
+        hr
+        ul
+          li
+          li
+            h3 No, RequireJS just creates a <code>define</code> wrapper for all shimmed libraries
+          li
+            pre
+              code.language-javascript.
+                define("backbone", ["underscore","jquery"], (function (global) {
+                    return function () {
+                        var ret, fn;
+                        return ret || global.Backbone;
+                    };
+                }(this)));
+
+      section
+        h2
+          a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
+        hr
+        h3 Also Useful for Declaring Dependencies
+        pre
+          code.language-javascript.
+            requirejs.config({
+              shim: {
+                'jquery.ui.widget': ['jquery'],
+
+                'jquery.selectBoxIt': ['jquery.ui.widget']
+              }
+            });
+
 
     // build:js scripts/scripts.js
     script(src='bower_components/bespoke.js/dist/bespoke.min.js')
