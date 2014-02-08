@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Modular Workflow with Require.js</title>
-    <link rel="stylesheet" href="styles/styles.css"/>
+    <!-- build:css styles/styles.css-->
+    <link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-tomorrow.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <!-- endbuild-->
   </head>
   <body>
     <article>
@@ -147,7 +150,7 @@
         <pre><code class="language-javascript">// init.js
 // Depends on jQuery, jQueryUI, Lodash, and Backbone
 define(['jquery', 'jqueryui', 'lodash', 'backbone'], function($, null, _, Backbone) {
-  /* This function get's called after
+  /* This function gets called after
     jquery.js, jqueryui.js, lodash.js,
     and backbone.js are loaded
   */
@@ -624,6 +627,18 @@ if (typeof exports !== 'undefined') {
         <h3><strong>Github: </strong><a href='https://github.com/gfranko' target='_blank'>gfranko</a></h3>
       </section>
     </article>
-    <script src="scripts/scripts.js"></script>
+    <!-- build:js scripts/scripts.js-->
+    <script src="bower_components/bespoke.js/dist/bespoke.min.js"></script>
+    <script src="bower_components/bespoke-keys/dist/bespoke-keys.min.js"></script>
+    <script src="bower_components/bespoke-touch/dist/bespoke-touch.min.js"></script>
+    <script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script>
+    <script src="bower_components/bespoke-scale/dist/bespoke-scale.min.js"></script>
+    <script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script>
+    <script src="bower_components/bespoke-progress/dist/bespoke-progress.min.js"></script>
+    <script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script>
+    <script src="bower_components/bespoke-forms/dist/bespoke-forms.min.js"></script>
+    <script src="bower_components/prism/prism.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild-->
   </body>
 </html>
